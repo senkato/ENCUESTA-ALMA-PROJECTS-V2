@@ -858,29 +858,32 @@
             console.log('Enviando datos a:', SCRIPT_URL);
             console.log('Datos a enviar:', datos);
             
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(datos)
-            })
-            .then(response => {
-                console.log('Respuesta recibida:', response);
-                return response.json();
-            })
-            .then(data => {
-                console.log('Datos de respuesta:', data);
-                if (data.status === 'success') {
-                    mostrarExito();
-                } else {
-                    mostrarError('Error en el servidor: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error de red:', error);
-                mostrarError('Error de conexión. Verifica tu conexión a internet e inténtalo de nuevo.');
-            });
+            // Crear formulario oculto para envío POST sin CORS
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = SCRIPT_URL;
+            form.target = '_blank';
+            form.style.display = 'none';
+            
+            // Crear campo oculto con los datos
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'data';
+            input.value = JSON.stringify(datos);
+            
+            form.appendChild(input);
+            document.body.appendChild(form);
+            
+            // Enviar formulario
+            form.submit();
+            
+            // Limpiar formulario
+            document.body.removeChild(form);
+            
+            // Mostrar éxito después de envío
+            setTimeout(() => {
+                mostrarExito();
+            }, 1000);
         }
 
         // Envío del formulario
