@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta: El Diseño de Espacios Corporativos como Herramienta Estratégica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+            line-height: 1.6;
+            color: #4a4a4a;
+            background: linear-gradient(135deg, #f8f6f3 0%, #ffffff 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #e8ddd4 0%, #f4f1ed 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(184,158,131,0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+            50% { transform: translate(-50%, -50%) rotate(180deg); }
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #b89e83;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-subtext {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #a08965;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #6b5b47;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .intro-text {
+            font-size: 1rem;
+            color: #8a7a6a;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 4px solid #b89e83;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif !important;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #b89e83;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 24px;
+            height: 24px;
+            background: #b89e83;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        .question-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: #4a4a4a;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
+        .question-note {
+            font-size: 0.85rem;
+            color: #888;
+            font-style: italic;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
+        .checkbox-group, .radio-group {
+            display: grid;
+            gap: 10px;
+        }
+
+        .checkbox-item, .radio-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background: #fafafa;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif !important;
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+
+        .checkbox-item:hover, .radio-item:hover {
+            background: #f0ebe6;
+            border-color: #b89e83;
+        }
+
+        .checkbox-item input, .radio-item input {
+            margin-right: 12px;
+            transform: scale(1.2);
+            accent-color: #b89e83;
+        }
+
+        .select-field, .text-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: white;
+        }
+
+        .select-field:focus, .text-input:focus {
+            outline: none;
+            border-color: #b89e83;
+            box-shadow: 0 0 0 3px rgba(184, 158, 131, 0.1);
+        }
+
+        .textarea-field {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            min-height: 120px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .textarea-field:focus {
+            outline: none;
+            border-color: #b89e83;
+            box-shadow: 0 0 0 3px rgba(184, 158, 131, 0.1);
+        }
+
+        .priority-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .priority-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: #fafafa;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            font-family: 'Montserrat', sans-serif !important;
+            font-size: 0.95rem;
+        }
+
+        .priority-select {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            accent-color: #b89e83;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #6b5b47 0%, #8a7a6a 100%);
+            color: white;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .footer h3 {
+            font-family: 'Montserrat', sans-serif !important;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .footer p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
+        .dedication {
+            background: linear-gradient(135deg, #b89e83 0%, #a08965 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .logo-text {
+                font-size: 2rem;
+            }
+            
+            .logo-subtext {
+                font-size: 1rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .form-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="logo-text">ALMA PROJECTS</h1>
+            <div class="logo-subtext">EMPRESAS</div>
+            <h2 class="subtitle">El Diseño de Espacios Corporativos como Herramienta Estratégica</h2>
+            <p class="intro-text">
+                <strong>Estimados miembros del Foro Ilusionando Paco Provencio:</strong><br><br>
+                Como parte de un Trabajo Fin de Máster sobre el impacto del diseño interior en el entorno empresarial, solicitamos vuestra valiosa opinión. Vuestro perfil como empresarios y directivos con visión estratégica es especialmente relevante para esta investigación sobre cómo el diseño de espacios puede convertirse en una herramienta de éxito empresarial.
+                <br><br>
+                <em>Tiempo estimado: 3-4 minutos</em>
+            </p>
+        </div>
+
+        <form id="encuestaForm">
+            <div class="form-section">
+                <h3 class="section-title">
+                    <span class="section-icon">1</span>
+                    Datos Generales
+                </h3>
+                
+                <div class="question">
+                    <label for="sector" class="question-label">Sector de su empresa:</label>
+                    <select id="sector" class="select-field" name="sector" required>
+                        <option value="">Seleccione su sector...</option>
+                        <option value="servicios-profesionales">Servicios profesionales (consultoría, legal, financiero)</option>
+                        <option value="tecnologia">Tecnología/IT</option>
+                        <option value="comercio">Comercio/Retail</option>
+                        <option value="salud">Salud y bienestar</option>
+                        <option value="hosteleria">Hostelería/Restauración</option>
+                        <option value="industrial">Industrial/Manufactura</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <fieldset>
+                        <legend class="question-label">Tamaño de su empresa:</legend>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="tamano" value="1-10" required>
+                                1-10 empleados
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="tamano" value="11-50">
+                                11-50 empleados
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="tamano" value="51-200">
+                                51-200 empleados
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="tamano" value="200+">
+                                Más de 200 empleados
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="question">
+                    <fieldset>
+                        <legend class="question-label">Años de experiencia empresarial:</legend>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="experiencia" value="<5" required>
+                                Menos de 5 años
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="experiencia" value="5-15">
+                                5-15 años
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="experiencia" value="16-25">
+                                16-25 años
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="experiencia" value="25+">
+                                Más de 25 años
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3 class="section-title">
+                    <span class="section-icon">2</span>
+                    Percepción del Diseño Interior Corporativo
+                </h3>
+
+                <div class="question">
+                    <fieldset>
+                        <legend class="question-label">¿Considera que el diseño de su espacio de trabajo influye en los resultados de su empresa?</legend>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="influencia" value="definitivamente-si" required>
+                                Definitivamente sí
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="influencia" value="probablemente-si">
+                                Probablemente sí
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="influencia" value="no-seguro">
+                                No estoy seguro/a
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="influencia" value="probablemente-no">
+                                Probablemente no
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="influencia" value="definitivamente-no">
+                                Definitivamente no
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="question">
+                    <fieldset>
+                        <legend class="question-label">En su opinión, ¿cuáles son los principales beneficios de invertir en el diseño del espacio corporativo?</legend>
+                        <p class="question-note">(Seleccione máximo 3 opciones)</p>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="beneficios" value="productividad">
+                                Mejora de la productividad del equipo
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="beneficios" value="imagen-marca">
+                                Fortalecimiento de la imagen de marca
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="beneficios" value="bienestar">
+                                Mayor satisfacción y bienestar de los empleados
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="beneficios" value="ventas">
+                                Incremento de ventas/captación de clientes
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="beneficios" value="diferenciacion">
+                                Diferenciación frente a la competencia
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="beneficios" value="talento">
+                                Atracción y retención de talento
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="beneficios" value="estres">
+                                Reducción del estrés laboral
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="beneficios" value="no-beneficios">
+                                No veo beneficios claros
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="question">
+                    <fieldset>
+                        <legend class="question-label">¿Qué aspectos considera más importantes al diseñar un espacio corporativo?</legend>
+                        <p class="question-note">(Ordene del 1 al 5, siendo 1 el más importante)</p>
+                        <div class="priority-grid">
+                            <div class="priority-item">
+                                <span>Funcionalidad y eficiencia operativa</span>
+                                <select class="priority-select" name="prioridad-funcionalidad" required>
+                                    <option value="">-</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="priority-item">
+                                <span>Estética y diseño visual</span>
+                                <select class="priority-select" name="prioridad-estetica" required>
+                                    <option value="">-</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="priority-item">
+                                <span>Bienestar y confort de las personas</span>
+                                <select class="priority-select" name="prioridad-bienestar" required>
+                                    <option value="">-</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="priority-item">
+                                <span>Sostenibilidad y responsabilidad ambiental</span>
+                                <select class="priority-select" name="prioridad-sostenibilidad" required>
+                                    <option value="">-</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="priority-item">
+                                <span>Coste de la inversión</span>
+                                <select class="priority-select" name="prioridad-coste" required>
+                                    <option value="">-</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3 class="section-title">
+                    <span class="section-icon">3</span>
+                    Experiencia y Necesidades
+                </h3>
+
+                <div class="question">
+                    <fieldset>
+                        <legend class="question-label">¿Ha invertido en diseño interior profesional para su empresa en los últimos 5 años?</legend>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="experiencia-diseno" value="si-excelente" required>
+                                Sí, con excelentes resultados
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="experiencia-diseno" value="si-satisfactorio">
+                                Sí, con resultados satisfactorios
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="experiencia-diseno" value="si-sin-resultados">
+                                Sí, pero sin resultados claros
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="experiencia-diseno" value="considerando">
+                                No, pero lo estoy considerando
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="experiencia-diseno" value="no-necesario">
+                                No, y no lo considero necesario
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="question">
+                    <fieldset>
+                        <legend class="question-label">Si está considerando o ha considerado contratar servicios de diseño interior, ¿qué buscaría prioritariamente en el estudio/profesional?</legend>
+                        <p class="question-note">(Seleccione máximo 3 opciones)</p>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="busca-estudio" value="experiencia">
+                                Experiencia demostrable en proyectos empresariales
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="busca-estudio" value="sector">
+                                Comprensión de las necesidades específicas de mi sector
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="busca-estudio" value="metodologia">
+                                Metodología que integre estrategia empresarial y diseño
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="busca-estudio" value="roi">
+                                Capacidad para medir el ROI de la inversión
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="busca-estudio" value="tecnologia">
+                                Uso de tecnología avanzada (renders, realidad aumentada)
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="busca-estudio" value="sostenibilidad">
+                                Compromiso con la sostenibilidad
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="busca-estudio" value="trato-humano">
+                                Trato humano y acompañamiento en el proceso
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="busca-estudio" value="referencias">
+                                Referencias y recomendaciones de otros empresarios
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="question">
+                    <fieldset>
+                        <legend class="question-label">¿Qué presupuesto aproximado destinaría a una reforma integral del diseño de su espacio corporativo?</legend>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="presupuesto" value="<10k" required>
+                                Menos de 10.000€
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="presupuesto" value="10-25k">
+                                Entre 10.000€ - 25.000€
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="presupuesto" value="25-50k">
+                                Entre 25.000€ - 50.000€
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="presupuesto" value="50-100k">
+                                Entre 50.000€ - 100.000€
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="presupuesto" value="100k+">
+                                Más de 100.000€
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="presupuesto" value="depende-retorno">
+                                Dependería del retorno esperado
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3 class="section-title">
+                    <span class="section-icon">4</span>
+                    Visión Estratégica
+                </h3>
+
+                <div class="question">
+                    <fieldset>
+                        <legend class="question-label">¿Cree que existe suficiente oferta en la Región de Murcia de estudios de diseño interior especializados en empresas que combinen estrategia, emoción y resultados medibles?</legend>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="oferta-murcia" value="suficiente" required>
+                                Sí, hay suficiente oferta especializada
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="oferta-murcia" value="algunos-pocos">
+                                Hay algunos, pero pocos especializados
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="oferta-murcia" value="dificil-encontrar">
+                                Es difícil encontrar profesionales con este enfoque
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="oferta-murcia" value="no-conozco">
+                                No conozco la oferta disponible
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="question">
+                    <fieldset>
+                        <legend class="question-label">¿Estaría interesado/a en una propuesta de diseño que integre análisis estratégico del equipo (como el método DISC), sostenibilidad real y tecnología avanzada para crear espacios que mejoren el bienestar y la productividad?</legend>
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="interes-propuesta" value="muy-interesado" required>
+                                Muy interesado/a
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="interes-propuesta" value="moderadamente">
+                                Moderadamente interesado/a
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="interes-propuesta" value="poco">
+                                Poco interesado/a
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="interes-propuesta" value="nada">
+                                Nada interesado/a
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="question">
+                    <label for="comentarios" class="question-label">COMENTARIOS ADICIONALES:</label>
+                    <p class="question-note">Si desea compartir alguna experiencia, necesidad específica o sugerencia relacionada con el diseño de espacios corporativos:</p>
+                    <textarea id="comentarios" class="textarea-field" name="comentarios" placeholder="Comparta aquí sus pensamientos, experiencias o sugerencias..."></textarea>
+                </div>
+            </div>
+
+            <button type="submit" style="background: linear-gradient(135deg, #b89e83 0%, #a08965 100%); color: white; padding: 15px 40px; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin-top: 20px; width: 100%; transition: transform 0.3s ease;">
+                Enviar Respuestas
+            </button>
+        </form>
+
+        <div class="footer">
+            <h3>¡Muchas gracias por vuestro tiempo y colaboración!</h3>
+            <p>
+                Vuestras respuestas son confidenciales y serán utilizadas únicamente con fines académicos para el desarrollo de este Trabajo Fin de Máster sobre ALMA PROJECTS EMPRESAS.
+            </p>
+            
+            <div class="dedication">
+                <p>
+                    <strong>En honor al espíritu de Paco Provencio</strong>, esta investigación busca comprender cómo el diseño puede ser una herramienta que ilusione, inspire y genere resultados reales para las empresas de nuestra región.
+                </p>
+            </div>
+            
+            <div class="contact-info">
+                <p><strong>Datos de contacto para consultas:</strong></p>
+                <p>Nombre: Patricia Alberca | Email: info@almaprojects.net | Universidad: UCAM</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Validación para máximo 3 checkboxes en beneficios
+        const beneficiosCheckboxes = document.querySelectorAll('input[name="beneficios"]');
+        beneficiosCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const checkedCount = document.querySelectorAll('input[name="beneficios"]:checked').length;
+                if (checkedCount > 3) {
+                    this.checked = false;
+                    alert('Por favor, seleccione máximo 3 opciones.');
+                }
+            });
+        });
+
+        // Validación para máximo 3 checkboxes en busca-estudio
+        const estudioCheckboxes = document.querySelectorAll('input[name="busca-estudio"]');
+        estudioCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const checkedCount = document.querySelectorAll('input[name="busca-estudio"]:checked').length;
+                if (checkedCount > 3) {
+                    this.checked = false;
+                    alert('Por favor, seleccione máximo 3 opciones.');
+                }
+            });
+        });
+
+        // Validación de prioridades únicas
+        function validatePriorities() {
+            const prioritySelects = document.querySelectorAll('.priority-select');
+            const values = Array.from(prioritySelects).map(select => select.value).filter(val => val !== '');
+            const uniqueValues = [...new Set(values)];
+            
+            if (values.length !== uniqueValues.length) {
+                alert('Por favor, asigne una prioridad diferente a cada aspecto (no se pueden repetir números).');
+                return false;
+            }
+            return true;
+        }
+
+        // Agregar validación de prioridades a los selects
+        const prioritySelects = document.querySelectorAll('.priority-select');
+        prioritySelects.forEach(select => {
+            select.addEventListener('change', validatePriorities);
+        });
+
+        function mostrarIndicadorEnvio() {
+            const boton = document.querySelector('button[type="submit"]');
+            boton.innerHTML = 'Enviando respuesta...';
+            boton.style.background = '#999';
+            boton.disabled = true;
+        }
+
+        function mostrarExito() {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.8); z-index: 1000;
+                display: flex; align-items: center; justify-content: center;
+            `;
+            
+            const contenido = document.createElement('div');
+            contenido.style.cssText = `
+                background: white; padding: 40px; border-radius: 20px;
+                max-width: 500px; text-align: center;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            `;
+            
+            contenido.innerHTML = `
+                <div style="color: #b89e83; font-size: 60px; margin-bottom: 20px;">✓</div>
+                <h3 style="color: #b89e83; font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 20px;">
+                    ¡Respuesta Enviada Correctamente!
+                </h3>
+                <p style="color: #666; font-size: 1.1rem; margin-bottom: 20px;">
+                    Muchas gracias por participar en la investigación de ALMA PROJECTS.
+                </p>
+                <p style="color: #888; font-size: 0.9rem; margin-bottom: 30px;">
+                    Tu opinión es muy valiosa para el desarrollo del sector del diseño interior en la Región de Murcia.
+                </p>
+                <button onclick="window.location.reload()" 
+                        style="background: linear-gradient(135deg, #b89e83 0%, #a08965 100%); color: white; padding: 12px 30px; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer;">
+                    Cerrar
+                </button>
+                <div style="margin-top: 20px; font-size: 0.8rem; color: #999; font-style: italic;">
+                    En honor al espíritu de Paco Provencio
+                </div>
+            `;
+            
+            modal.appendChild(contenido);
+            document.body.appendChild(modal);
+        }
+
+        function mostrarError(mensaje) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.8); z-index: 1000;
+                display: flex; align-items: center; justify-content: center;
+            `;
+            
+            const contenido = document.createElement('div');
+            contenido.style.cssText = `
+                background: white; padding: 30px; border-radius: 15px;
+                max-width: 400px; text-align: center;
+            `;
+            
+            contenido.innerHTML = `
+                <div style="color: #e74c3c; font-size: 50px; margin-bottom: 20px;">⚠</div>
+                <h3 style="color: #e74c3c; margin-bottom: 15px;">Error al enviar</h3>
+                <p style="color: #666; margin-bottom: 20px;">${mensaje}</p>
+                <button onclick="this.closest('.modal').remove(); location.reload()" 
+                        style="background: #e74c3c; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                    Intentar de nuevo
+                </button>
+            `;
+            
+            modal.className = 'modal';
+            modal.appendChild(contenido);
+            document.body.appendChild(modal);
+
+            // Restaurar botón
+            const boton = document.querySelector('button[type="submit"]');
+            boton.innerHTML = 'Enviar Respuestas';
+            boton.style.background = 'linear-gradient(135deg, #b89e83 0%, #a08965 100%)';
+            boton.disabled = false;
+        }
+
+        // Función principal para enviar a Google Sheets
+        function enviarAGoogleSheets(datos) {
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyDEQCX_8Vbklw7k9_VzuIW2Sr51Bakqjjpt_c7dMVGzZ-TxtSCtHYcW8IMJGDoYL65/exec';
+            
+            console.log('Enviando datos a:', SCRIPT_URL);
+            console.log('Datos a enviar:', datos);
+            
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(datos)
+            })
+            .then(response => {
+                console.log('Respuesta recibida:', response);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Datos de respuesta:', data);
+                if (data.status === 'success') {
+                    mostrarExito();
+                } else {
+                    mostrarError('Error en el servidor: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error de red:', error);
+                mostrarError('Error de conexión. Verifica tu conexión a internet e inténtalo de nuevo.');
+            });
+        }
+
+        // Envío del formulario
+        document.getElementById('encuestaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validatePriorities()) {
+                return;
+            }
+
+            // Mostrar indicador de envío
+            mostrarIndicadorEnvio();
+
+            // Recopilar datos del formulario
+            const formData = new FormData(this);
+            const datos = {};
+            
+            // Procesar campos normales
+            for (let [key, value] of formData.entries()) {
+                if (datos[key]) {
+                    // Si ya existe, convertir a array (para checkboxes múltiples)
+                    if (Array.isArray(datos[key])) {
+                        datos[key].push(value);
+                    } else {
+                        datos[key] = [datos[key], value];
+                    }
+                } else {
+                    datos[key] = value;
+                }
+            }
+
+            // Enviar a Google Sheets automáticamente
+            enviarAGoogleSheets(datos);
+        });
+    </script>
+</body>
+</html>
