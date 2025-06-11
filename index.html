@@ -858,32 +858,24 @@
             console.log('Enviando datos a:', SCRIPT_URL);
             console.log('Datos a enviar:', datos);
             
-            // Crear formulario oculto para envío POST sin CORS
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = SCRIPT_URL;
-            form.target = '_blank';
-            form.style.display = 'none';
-            
-            // Crear campo oculto con los datos
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'data';
-            input.value = JSON.stringify(datos);
-            
-            form.appendChild(input);
-            document.body.appendChild(form);
-            
-            // Enviar formulario
-            form.submit();
-            
-            // Limpiar formulario
-            document.body.removeChild(form);
-            
-            // Mostrar éxito después de envío
-            setTimeout(() => {
+            // Usar método no-cors con fetch
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'data=' + encodeURIComponent(JSON.stringify(datos))
+            })
+            .then(() => {
+                console.log('Datos enviados (modo no-cors)');
+                // En modo no-cors no podemos leer la respuesta, pero asumimos éxito
                 mostrarExito();
-            }, 1000);
+            })
+            .catch(error => {
+                console.error('Error al enviar:', error);
+                mostrarError('Error de conexión. Por favor, inténtalo de nuevo.');
+            });
         }
 
         // Envío del formulario
